@@ -28,6 +28,8 @@
     <!-- END: load jquery -->
     <script type="text/javascript" src="{{asset('assets/admin/js/table/table.js')}}"></script>
     <script src="{{asset('assets/admin/js/setup.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets/admin/js/my_csript.js') }}"></script>
+
 	 <script type="text/javascript">
         $(document).ready(function () {
             setupLeftMenu();
@@ -49,11 +51,16 @@
 				</div>
                 <div class="floatright">
                     <div class="floatleft">
-                        <img src="{{asset('assets/admin/img/img-profile.jpg')}}" alt="Profile Pic" /></div>
+                        <?php $avatar = auth()->user()->avatar;?>
+                        @if ($avatar)
+                        <img height="30" src="{{asset('uploads/users/'.$avatar)}}" alt="Profile Pic" /></div>
+                        @else
+                        <img src="{{ asset('assets/admin/img/img-profile.jpg') }}" alt="Profile Pic" /></div>
+                        @endif
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                            <li>Hello Admin</li>
-                            <li><a href="#">Logout</a></li>
+                            <li>Hello {{auth()->user()->username}}</li>
+                            <li><a href="{{ route('admin.logout')}}">Logout</a></li>
                         </ul>
                     </div>
                 </div>

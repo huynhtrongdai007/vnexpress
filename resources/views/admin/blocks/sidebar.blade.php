@@ -17,10 +17,10 @@
                         <li><a>Contact Us</a></li>
                     </ul>
                 </li>
-				<li><a class="menuitem">Slider Option</a>
+				<li><a class="menuitem">User</a>
                     <ul class="submenu">
-                        <li><a href="addslider.php">Add Slider</a> </li>
-                        <li><a href="sliderlist.php">Slider List</a> </li>
+                        <li><a href="{{ route('admin.user.create') }}">Add User</a> </li>
+                        <li><a href="{{ route('admin.user.index') }}">User List</a> </li>
                     </ul>
                 </li>
                 <li><a class="menuitem">Category Option</a>
