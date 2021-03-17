@@ -27,8 +27,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 
       Route::get('login','UserController@login')->name('login');
       Route::post('progressLogin','UserController@progressLogin')->name('progressLogin');
-      Route::get('logout','UserController@logout')->name('logout');     
+      Route::get('logout','UserController@logout')->name('logout');  
+
       Route::middleware('check_login')->group(function() {
+
         Route::prefix('user')->name('user.')->group(function() {
             Route::get('index','UserController@index')->name('index');
             Route::get('create','UserController@create')->name('create');
@@ -37,7 +39,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
             Route::post('update/{id}','UserController@update')->name('update');
             Route::get('destroy/{id}','UserController@destroy')->name('destroy');
         });
-
+        Route::prefix('category')->name('category.')->group(function() {
+            Route::get('index','CategoryController@index')->name('index');
+            Route::get('create','CategoryController@create')->name('create');
+            Route::post('store','CategoryController@store')->name('store');
+            Route::get('edit/{id}','CategoryController@edit')->name('edit');
+            Route::post('update/{id}','CategoryController@update')->name('update');
+            Route::get('destroy/{id}','CategoryController@destroy')->name('destroy');
+        });
     });
  });
 

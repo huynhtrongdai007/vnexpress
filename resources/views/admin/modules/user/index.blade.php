@@ -37,7 +37,6 @@
               </label>
             </th>
             <th>STT</th>
-            
             <th>avatar</th>
             <td>Name</td>
             <th>Username</th>
@@ -75,7 +74,6 @@
             </td>
           </tr>
           @endforeach
-
         </tbody>
       </table>
     </div>

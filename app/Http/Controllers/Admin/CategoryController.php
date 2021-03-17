@@ -4,9 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+Use App\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB,DateTime;
+use Illuminate\Support\Facades\Log;
 class CategoryController extends Controller
 {
+    private $category;
+
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+       $categorys =  $this->category->all();
+        return view('admin.modules.category.index',compact('categorys'));
     }
 
     /**
@@ -24,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.modules.category.create');
     }
 
     /**
@@ -35,7 +45,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $count =count($this->category->all());
+                $data = array(
+                    'name' => $request->name,
+                    'slug' => Str::slug($request->name),
+                    'ordinal_number' => ++$count,  
+                    'created_at' =>  new DateTime()             
+                    );
+                $this->category->insert($data);
+           
+        return back()->with('message','Insert SuccessFully');
     }
 
     /**
@@ -57,7 +76,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+       $category = $this->category->find($id);
+        return view('admin.modules.category.edit',compact('category'));
     }
 
     /**
@@ -69,7 +89,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array(
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),  
+            'updated_at' =>  new DateTime()             
+            );
+            $this->category->find($id)->update($data);
+   
+        return back()->with('message','Updated SuccessFully');
     }
 
     /**
@@ -80,6 +107,19 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->category->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message'=>'success'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Message:'.$e->getMessage().'  Line : ' . $e->getLine());
+
+            return response()->json([
+                'code' => 500,
+                'message'=>'fail'
+            ]);
+        }
     }
 }
