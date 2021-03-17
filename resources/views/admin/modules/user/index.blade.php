@@ -1,55 +1,103 @@
 @extends('admin.master_layout')
 @section('content')
-<div class="grid_10">
-    <div class="box round first grid">
-        <h2>Category List</h2>
-        <div class="block">        
-            <table class="data display datatable" id="example">
-            <thead>
-                <tr>
-                    <th>Serial No.</th>
-                    <th>Họ Tên</th>
-                    <th>Username</th>
-                    <td>Address</td>
-                    <td>Phone</td>
-                    <td>Email</td>
-                    <td>Giới Tính</td>
-                    <td>Ngày Sinh</td>
-                    <td>Active</td>
-                    <td>Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $item)
-                <tr class="odd gradeX">
-                    <td>{{$item->id}}</td>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->username}}</td>
-                    <td>{{$item->address}}</td>
-                    <td>{{$item->phone}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->gender == 0 ? 'Nam' : 'Nữ'}}</td>
-                    <td>{{$item->birthday}}</td>
-                    <td>{{$item->active}}</td>
-                    <td><a href="{{ route('admin.user.edit', ['id'=>$item->id]) }}">Edit</a> || 
-                        <a class="action_delete" data-url="{{ route('admin.user.destroy', ['id'=>$item->id]) }}" href="">Delete</a></td>
-                </tr>
-               
-                @endforeach
-               
-            </tbody>
-        </table>
-       </div>
+
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Responsive Table
     </div>
+    <div class="row w3-res-tb">
+      <div class="col-sm-5 m-b-xs">
+        <select class="input-sm form-control w-sm inline v-middle">
+          <option value="0">Bulk action</option>
+          <option value="1">Delete selected</option>
+          <option value="2">Bulk edit</option>
+          <option value="3">Export</option>
+        </select>
+        <button class="btn btn-sm btn-default">Apply</button>                
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" class="input-sm form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox"><i></i>
+              </label>
+            </th>
+            <th>STT</th>
+            
+            <th>avatar</th>
+            <td>Name</td>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <td>Active</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+             @php
+            $stt = 0;
+        @endphp
+         @foreach ($data as $item) 
+            @php
+                $stt++;
+            @endphp   
+          <tr>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td>{{$stt}}</td>
+            
+            <td><img height="80" src="{{ asset('uploads/users/'.$item->avatar)}}" alt=""></td>
+            <td>{{$item->name}}</td>
+            <td>{{$item->username}}</td>
+            <td>{{$item->phone}}</td>
+            <td>{{$item->email}}</td>
+            <td>{{$item->gender == 0 ? 'Nam' : 'Nữ'}}</td>
+            <td>{{$item->address}}</td>
+            <td>{{$item->active}}</td>
+            <td>
+                <a href="{{ route('admin.user.edit', ['id'=>$item->id]) }}" class="btn btn-info">Edit</a> | 
+                <a  data-url="{{ route('admin.user.destroy', ['id'=>$item->id]) }}"  href="" class="action_delete btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          @endforeach
+
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        
+        <div class="col-sm-5 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">                
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </div>
-<script type="text/javascript">
-$(document).ready(function () {
-setupLeftMenu();
 
-$('.datatable').dataTable();
-setSidebarHeight();
-});
-
-
-</script>
 @endsection

@@ -1,12 +1,5 @@
- <div class="clear">
-        </div>
+<div class="footer">
+    <div class="wthree-copyright">
+      <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
     </div>
-    <div class="clear">
-    </div>
-    <div id="site_info">
-        <p>
-         &copy; Copyright <a href="http://trainingwithliveproject.com">Training with live project</a>. All Rights Reserved.
-        </p>
-    </div>
-</body>
-</html>
+  </div>

@@ -1,69 +1,84 @@
 @extends('admin.master_layout')
-@section('title','Tạo User')
+@section('title','Them User')
 @section('content')
-        <div class="grid_10">
-            <div class="box round first grid">
-                <h2>Add New User</h2>
-               <div class="block copyblock"> 
-                @php
-                     $message = Session::get('message');  
-                @endphp
-                @if (isset($message))
-                    <div style="color:lightgreen">{{$message}}</div>               
-                @endif
-                 <form action="{{route('admin.user.store')}}" method="POST" enctype="multipart/form-data">
-                     @csrf
-                    <table class="form">					
-                        <tr>
-                            <td>
-                                <input type="text" value="{{old('name')}}" name="name" placeholder="Enter Name..." class="medium" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="password" value="{{old('password')}}" name="password" placeholder="Enter Password.." class="medium">
-                            </td>
-                        </tr>
-                      
-                        <tr>
-                            <td>
-                                <input type="text" value="{{old('phone')}}" name="phone" placeholder="Enter Phone.." class="medium">
-                            </td>
-                            <td><input type="date" value="{{'birthday'}}" name="birthday" class="medium"></td>
-                        </tr>
     
-                        <tr>
-                            
-                            <td><input type="text" name="username" placeholder="Enter Username.." class="medium">                            
-                            </td>
-                            <td>
-                                <select class="medium"  name="gender">
-                                    <option value="">Chọn giới tính</option>
-                                    <option value="0">Nam</option>
-                                    <option value="1">Nữ</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" value="{{old('email')}}" name="email" placeholder="Enter Email.." class="medium">
-                            </td>
-                            <td>
-                                <input type="file" name="avatar">
-                            </td>
-                          
-                        </tr>
-                        <tr>
-                            <td><textarea name="address" placeholder="Enter Address" class="medium" cols="30" rows="10"></textarea></td>
-                        </tr>
-						<tr> 
-                            <td>
-                                <input type="submit" name="submit" Value="Save" />
-                            </td>
-                        </tr>
-                    </table>
-                    </form>
+<div class="row">
+    <div class="col-md-12">
+
+        <div data-collapsed="0" class="panel">
+
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Them User
                 </div>
             </div>
+
+            <div class="panel-body">
+
+                <div class="row">
+
+                  <form action="{{ route('admin.user.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="col-md-4 form-group">
+                        <label for="">Name</label>
+                        <input type="text" value="{{old('name')}}" name="name" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Username</label>
+                        <input type="text" value="{{old('username')}}" name="username" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Password</label>
+                        <input type="password" {{old('password')}} name="password" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Email</label>
+                        <input type="email" {{old('email')}} name="email" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Phone</label>
+                        <input type="number" {{old('phone')}} name="phone" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Gender</label>
+                        <select class="form-control"  name="gender" id="">
+                            <option>Select Gender</option>
+                            <option value="0">Male</option>
+                            <option value="1">Female</option>
+                        </select>
+                    </div>
+                 
+                    <div class="col-md-4 form-group">
+                        <label for="">Birthday</label>
+                        <input type="date" value="{{old('birthday')}}" name="birthday" placeholder=".col-md-1" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Address</label>
+                        <textarea class="form-control" name="address"></textarea>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Avatar</label>
+                        <input type="file" value="{{old('avatar')}}" name="avatar" class="form-control">
+                    </div>
+
+                    <div class="col-md-4 form-group lm-auto">
+                        <label for=""></label>
+                        <input type="submit" value="Add"  class="btn btn-primary form-control ">
+                    </div> 
+                @php
+                    $message = Session::get('message');  
+                @endphp
+                @if (isset($message))
+                    <div class="alert alert-success">{{$message}}</div>               
+                @endif
+                  </form>
+                </div>
+
+            </div>
+
         </div>
+
+    </div>
+</div>
+
 @endsection

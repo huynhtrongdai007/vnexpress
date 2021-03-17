@@ -1,41 +1,27 @@
-<div class="grid_2">
-    <div class="box sidemenu">
-        <div class="block" id="section-menu">
-            <ul class="section menu">
-               <li><a class="menuitem">Site Option</a>
-                    <ul class="submenu">
-                        <li><a href="titleslogan.php">Title & Slogan</a></li>
-                        <li><a href="social.php">Social Media</a></li>
-                        <li><a href="copyright.php">Copyright</a></li>
-                        
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" href="index.html">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>User</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('admin.user.index') }}">List User</a></li>
+                        <li><a href="{{ route('admin.user.create') }}">Create User</a></li>
                     </ul>
                 </li>
-				
-                 <li><a class="menuitem">Update Pages</a>
-                    <ul class="submenu">
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
-                    </ul>
-                </li>
-				<li><a class="menuitem">User</a>
-                    <ul class="submenu">
-                        <li><a href="{{ route('admin.user.create') }}">Add User</a> </li>
-                        <li><a href="{{ route('admin.user.index') }}">User List</a> </li>
-                    </ul>
-                </li>
-                <li><a class="menuitem">Category Option</a>
-                    <ul class="submenu">
-                        <li><a href="addcat.php">Add Category</a> </li>
-                        <li><a href="catlist.php">Category List</a> </li>
-                    </ul>
-                </li>
-                <li><a class="menuitem">Product Option</a>
-                    <ul class="submenu">
-                        <li><a href="addproduct.php">Add Product</a> </li>
-                        <li><a href="productlist.php">Product List</a> </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+            </ul> 
     </div>
-</div>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
