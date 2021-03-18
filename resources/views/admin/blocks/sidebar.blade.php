@@ -30,6 +30,16 @@
                         <li><a href="{{ route('admin.category.create') }}">Create Category</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Type News</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('admin.type-of-news.index') }}">List Category</a></li>
+                        <li><a href="{{ route('admin.type-of-news.create') }}">Create Category</a></li>
+                    </ul>
+                </li>
             </ul> 
     </div>
         <!-- sidebar menu end-->

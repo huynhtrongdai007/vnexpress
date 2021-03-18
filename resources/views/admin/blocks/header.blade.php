@@ -199,12 +199,11 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     @php
                         $avatar = auth()->user()->avatar;
-
                     @endphp
                     @if ($avatar)
                     <img alt="" src="{{asset('uploads/users/'.$avatar)}}">
                     @else
-                    <img alt="" src="images/2.png"> 
+                    <img alt="" src="{{ asset('assets/admin/images/no-avatar.png') }}"> 
                     @endif
                     <span class="username">{{auth()->user()->username}}</span>
                     <b class="caret"></b>

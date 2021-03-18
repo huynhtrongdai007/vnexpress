@@ -47,6 +47,22 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
             Route::post('update/{id}','CategoryController@update')->name('update');
             Route::get('destroy/{id}','CategoryController@destroy')->name('destroy');
         });
+        Route::prefix('type-of-news')->name('type-of-news.')->group(function() {
+            Route::get('index','ControllerTypeOfNews@index')->name('index');
+            Route::get('create','ControllerTypeOfNews@create')->name('create');
+            Route::post('store','ControllerTypeOfNews@store')->name('store');
+            Route::get('edit/{id}','ControllerTypeOfNews@edit')->name('edit');
+            Route::post('update/{id}','ControllerTypeOfNews@update')->name('update');
+            Route::get('destroy/{id}','ControllerTypeOfNews@destroy')->name('destroy');
+        });
+        Route::prefix('news')->name('news.')->group(function() {
+            Route::get('index','NewsController@index')->name('index');
+            Route::get('create','NewsController@create')->name('create');
+            Route::post('store','NewsController@store')->name('store');
+            Route::get('edit/{id}','NewsController@edit')->name('edit');
+            Route::post('update/{id}','NewsController@update')->name('update');
+            Route::get('destroy/{id}','NewsController@destroy')->name('destroy');
+        });
     });
  });
 
