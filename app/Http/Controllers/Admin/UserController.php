@@ -146,6 +146,16 @@ class UserController extends Controller
         }
     }
 
+    public function Active(Request $request) {
+        $id = $request->id;
+        $this->user->where('id',$id)->update(['active'=>1]);
+    }
+
+    public function Untive(Request $request) {
+        $id = $request->id;
+        $this->user->where('id',$id)->update(['active'=>0]);
+    }
+
     public function progressLogin(Request $request) {
 
         $request->validate([

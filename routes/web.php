@@ -38,6 +38,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
             Route::get('edit/{id}','UserController@edit')->name('edit');
             Route::post('update/{id}','UserController@update')->name('update');
             Route::get('destroy/{id}','UserController@destroy')->name('destroy');
+            Route::get('update-active/{id}','UserController@Active')->name('active');
+            Route::get('updates-untive/{id}','UserController@Untive')->name('untive');
         });
         Route::prefix('category')->name('category.')->group(function() {
             Route::get('index','CategoryController@index')->name('index');
@@ -46,6 +48,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
             Route::get('edit/{id}','CategoryController@edit')->name('edit');
             Route::post('update/{id}','CategoryController@update')->name('update');
             Route::get('destroy/{id}','CategoryController@destroy')->name('destroy');
+            Route::get('update-active/{id}','CategoryController@Active')->name('active');
+            Route::get('updates-untive/{id}','CategoryController@Untive')->name('untive');
         });
         Route::prefix('type-of-news')->name('type-of-news.')->group(function() {
             Route::get('index','ControllerTypeOfNews@index')->name('index');
@@ -54,6 +58,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
             Route::get('edit/{id}','ControllerTypeOfNews@edit')->name('edit');
             Route::post('update/{id}','ControllerTypeOfNews@update')->name('update');
             Route::get('destroy/{id}','ControllerTypeOfNews@destroy')->name('destroy');
+            Route::get('update-active/{id}','ControllerTypeOfNews@Active')->name('active');
+            Route::get('updates-untive/{id}','ControllerTypeOfNews@Untive')->name('untive');
         });
         Route::prefix('news')->name('news.')->group(function() {
             Route::get('index','NewsController@index')->name('index');

@@ -60,14 +60,31 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$stt}}</td>
             
-            <td><img height="80" src="{{ asset('uploads/users/'.$item->avatar)}}" alt=""></td>
+            <td>
+             @php
+                 $avatar = $item->avatar;
+             @endphp 
+              @if ($avatar)
+              <img height="80" src="{{ asset('uploads/users/'.$avatar)}}" alt="">
+              @else
+              <img height="80" src="{{ asset('assets/admin/images/no-avatar.png')}}" alt="">
+              @endif
+            </td>
             <td>{{$item->name}}</td>
             <td>{{$item->username}}</td>
             <td>{{$item->phone}}</td>
             <td>{{$item->email}}</td>
             <td>{{$item->gender == 0 ? 'Nam' : 'Nữ'}}</td>
             <td>{{$item->address}}</td>
-            <td>{{$item->active}}</td>
+            <td>
+                
+              @if($item->active==1)
+              <input type="checkbox" data-url="{{ route('admin.user.untive', ['id'=>$item->id]) }}"  class="status_off " checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+              @else
+               <input type="checkbox" data-url="{{ route('admin.user.active', ['id'=>$item->id]) }}" class="status_on" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+              @endif
+            
+            </td>
             <td>
                 <a href="{{ route('admin.user.edit', ['id'=>$item->id]) }}" class="btn btn-info">Edit</a> | 
                 <a  data-url="{{ route('admin.user.destroy', ['id'=>$item->id]) }}"  href="" class="action_delete btn btn-danger">Delete</a>

@@ -3,10 +3,49 @@
 <script src="{{asset('assets/admin/js/scripts.js')}}"></script>
 <script src="{{asset('assets/admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('assets/admin/js/jquery.nicescroll.js')}}"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{asset('assets/admin/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
+<!--[if lte IE 8]>
+    <script language="javascript" type="text/javascript" src="{{asset('assets/admin/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
 <script src="{{asset('assets/admin/js/jquery.scrollTo.js')}}"></script>
 <script src="{{asset('assets/admin/js/my_script.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
+<script>
+    let editor_config = {
+    path_absolute : "/",
+    selector: "textarea.tinymce_editor_init",
+    plugins: [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table contextmenu directionality",
+      "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    relative_urls: false,
+    file_browser_callback : function(field_name, url, type, win) {
+      let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+      let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+      let cmsURL = editor_config.path_absolute + 'filemanager?field_name=' + field_name;
+      if (type == 'image') {
+        cmsURL = cmsURL + "&type=Images";
+      } else {
+        cmsURL = cmsURL + "&type=Files";
+      }
+
+      tinyMCE.activeEditor.windowManager.open({
+        file : cmsURL,
+        title : 'Filemanager',
+        width : x * 0.8,
+        height : y * 0.8,
+        resizable : "yes",
+        close_previous : "no"
+      });
+    }
+  };
+
+  tinymce.init(editor_config);
+</script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {

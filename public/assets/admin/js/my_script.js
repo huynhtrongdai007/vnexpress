@@ -15,3 +15,33 @@ $(document).ready(function() {
         });
     });
 });
+
+
+$(document).ready(function(){
+    $("#search-input").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#dataTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+});
+
+$(document).ready(function() {
+    //update status brand 
+    $('.status_on').on('change',function() {
+      let urlRequest = $(this).data("url");
+      $.ajax({
+        url:urlRequest, 
+        type:'GET',
+      }); 
+    });
+  
+    $('.status_off').on('change',function() {
+      let urlRequest = $(this).data("url");
+      $.ajax({
+        url:urlRequest, 
+        type:'GET',
+      }); 
+    });
+  
+  });

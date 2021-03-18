@@ -54,7 +54,15 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{$stt}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->active}}</td>
+            <td>
+              
+                @if($item->active==1)
+                <input type="checkbox" data-url="{{ route('admin.category.untive', ['id'=>$item->id]) }}"  class="status_off " checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                @else
+                 <input type="checkbox"  data-url="{{ route('admin.category.active', ['id'=>$item->id]) }}" class="status_on" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                @endif
+              
+            </td>
             <td>
                 <a href="{{ route('admin.category.edit', ['id'=>$item->id]) }}" class="btn btn-info">Edit</a> | 
                 <a  data-url="{{ route('admin.category.destroy', ['id'=>$item->id]) }}"  href="" class="action_delete btn btn-danger">Delete</a>

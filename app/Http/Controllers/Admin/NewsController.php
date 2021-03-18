@@ -4,9 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Category;
+use App\TypeOfNews;
 class NewsController extends Controller
 {
+    private $category;
+    private $type_of_news;
+
+    public function __construct(Category $category,TypeOfNews $type_of_news)
+    {
+        $this->category = $category;
+        $this->type_of_news = $type_of_news;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+     
+        return view('admin.modules.news.index');
     }
 
     /**
@@ -24,7 +35,9 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        $categorys = $this->category->all();
+        $type_of_news = $this->type_of_news->all();
+        return view('admin.modules.news.create',compact('categorys','type_of_news'));   
     }
 
     /**

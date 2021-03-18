@@ -4,7 +4,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Responsive Table
+        Type Of News
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -20,7 +20,7 @@
       </div>
       <div class="col-sm-3">
         <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
+          <input type="text" id="search-input" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
@@ -43,7 +43,7 @@
             <td>Action</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="dataTable">
              @php
             $stt = 0;
         @endphp
@@ -56,7 +56,13 @@
             <td>{{$item->id}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->categorys->name}}</td>
-            <td>{{$item->active}}</td>
+            <td>
+              @if($item->active==1)
+              <input type="checkbox" data-url="{{ route('admin.type-of-news.untive', ['id'=>$item->id]) }}"  class="status_off " checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+              @else
+               <input type="checkbox"  data-url="{{ route('admin.type-of-news.active', ['id'=>$item->id]) }}" class="status_on" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+              @endif
+            </td>  
             <td>
                 <a href="{{ route('admin.type-of-news.edit', ['id'=>$item->id]) }}" class="btn btn-info">Edit</a> | 
                 <a  data-url="{{ route('admin.type-of-news.destroy', ['id'=>$item->id]) }}"  href="" class="action_delete btn btn-danger">Delete</a>
